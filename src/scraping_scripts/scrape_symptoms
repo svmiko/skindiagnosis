@@ -1,0 +1,101 @@
+# test
+
+import requests
+from bs4 import BeautifulSoup
+import csv
+
+
+# keywords = ['pigmentation',
+#             'pigmentation disorders',
+#             'Skin Pigmentation Disorders',
+#             'Lupus',
+#             'Systemic Lupus Erythematosus',
+#             'Acne',
+#             'Rosacea',
+#             'Acne Rosacea',
+#             'Poison Ivy',
+#             'Hives',
+#             'Eczema',
+#             'Psoriasis']
+
+# disease = {
+#     'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation'],
+#     'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis'],
+#     'Acne': ['Acne Vulgaris', 'Acne Rosacea'],
+#     'Contact Dermatitis': ['Poison Ivy Dermatitis', 'Contact Dermatitis'],
+#     'Vascular Tumors': ['Hemangioma', 'Kaposiform Hemangioendothelioma'],
+#     'Urticaria Hives': ['Chronic Idiopathic Urticaria', 'Physical Urticaria'],
+#     'Atopic Dermatitis': ['Eczema', 'Contact Dermatitis'],
+#     'Bullous Disease': ['Pemphigus', 'Bullous Pemphigoid', 'Epidermolysis Bullosa'],
+#     'Hair Loss': ['Alopecia Areata', 'Androgenetic Alopecia', 'Telogen Effluvium'],
+#     'Fungal Infections': ['Ringworm (Tinea Corporis)', 'Candidiasis', 'Tinea Versicolor'],
+#     'Psoriasis': ['Plaque Psoriasis', 'Guttate Psoriasis', 'Inverse Psoriasis'],
+#     'Melanoma': ['Superficial Spreading Melanoma', 'Nodular Melanoma', 'Lentigo Maligna Melanoma'],
+#     'Nail Fungus': ['Onychomycosis', 'Paronychia'],
+#     'Infestations and Bites': ['Scabies', 'Lyme Disease'],
+#     'Eczema': ['Atopic Dermatitis', 'Contact Dermatitis'],
+#     'Exanthems and Eruptions': ['Measles', 'Roseola'],
+#     'Herpes and STDs': ['Herpes Simplex', 'HPV (Human Papillomavirus)', 'Syphilis'],
+#     'Benign Tumors': ['Seborrheic Keratosis', 'Dermatofibroma'],
+#     'Malignant Lesions': ['Basal Cell Carcinoma', 'Squamous Cell Carcinoma', 'Merkel Cell Carcinoma'],
+#     'Vasculitis': ['Hypersensitivity Vasculitis', 'Granulomatosis with Polyangiitis'],
+#     'Bacterial Infections': ['Cellulitis', 'Impetigo'],
+#     'Viral Infections': ['Warts', 'Molluscum Contagiosum'],
+# }
+
+print("Hello")
+
+disease = {
+    'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']}
+
+num_results_to_explore = 3
+data=[]
+for disease_name, keywords in disease.items():
+    for keyword in keywords:
+
+        query = f'{disease_name} {keyword} symptoms'
+        search_url = f'https://www.google.com/search?q={query}'
+        print(search_url)  
+
+        response = requests.get(search_url)
+        print(response.status_code)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            #result_divs = soup.find_all('div')
+
+            #result_links = soup.find_all('div')
+            result_links = soup.find_all('a')
+            url_list =[]
+            for link in result_links:
+                if link.get("href").startswith("/url"):
+                    link_url = link.get("href")[7:-86]
+                    if len(url_list) <10:
+                        url_list.append(link_url)
+
+            print(url_list)
+
+            for link_url in url_list:
+                # visit page
+                page_response = requests.get(link_url)
+                if page_response.status_code == 200:
+                    page_soup = BeautifulSoup(page_response.content, 'html.parser')
+                    component = page_soup.find(lambda tag: (tag.name in ['h1', 'h2','section', 'p'])
+                                                    and 'symptoms' in tag.get_text().lower()
+                                                    # and 'include' in tag.get_text().lower()
+                                                )
+                    # print(components)
+                    try:
+
+                        print(f"{disease_name} {keyword} {link_url} symptoms:")
+                        ul_element = component.find_next('ul')
+                        print(ul_element.get_text())
+                    except:
+                        pass
+                
+        
+    break
+
+
+
+
+            
