@@ -1,6 +1,7 @@
 # test
 
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 import csv
 
@@ -43,58 +44,96 @@ import csv
 #     'Viral Infections': ['Warts', 'Molluscum Contagiosum'],
 # }
 
-print("Hello")
+### ADD NAME OF WEBSITE HERE!!!!!!
+websites = ['Mayo Clinic', 
+            'Cleveland clinic']
 
 disease = {
     'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']}
 
-num_results_to_explore = 3
-data=[]
-for disease_name, keywords in disease.items():
-    for keyword in keywords:
+data = {
+    'Disease': [],
+    'Keyword': [],
+    'Website': [],
+    'Symptoms':[]
+}
+df = pd.DataFrame(data)
 
-        query = f'{disease_name} {keyword} symptoms'
-        search_url = f'https://www.google.com/search?q={query}'
-        print(search_url)  
 
-        response = requests.get(search_url)
-        print(response.status_code)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.content, 'html.parser')
-            #result_divs = soup.find_all('div')
+for website in websites:
+    for disease_name, keywords in disease.items():
+        d_cat = disease_name
+        for keyword in keywords:
+            query = f'{website} {keyword} symptoms'
+            search_url = f'https://www.google.com/search?q={query}'
+            # print(search_url)  
 
-            #result_links = soup.find_all('div')
-            result_links = soup.find_all('a')
-            url_list =[]
-            for link in result_links:
-                if link.get("href").startswith("/url"):
-                    link_url = link.get("href")[7:-86]
-                    if len(url_list) <10:
-                        url_list.append(link_url)
+            response = requests.get(search_url)
+            # print(response.status_code)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.content, 'html.parser')
+                result_links = soup.find_all('a')
+                url_list =[]
+                for link in result_links:
+                    if link.get("href").startswith("/url"):
+                        link_url = link.get("href")[7:-86]
+                        if len(url_list) <1:
+                            url_list.append(link_url)
 
-            print(url_list)
+                # print(url_list)
 
-            for link_url in url_list:
-                # visit page
-                page_response = requests.get(link_url)
-                if page_response.status_code == 200:
-                    page_soup = BeautifulSoup(page_response.content, 'html.parser')
-                    component = page_soup.find(lambda tag: (tag.name in ['h1', 'h2','section', 'p'])
-                                                    and 'symptoms' in tag.get_text().lower()
-                                                    # and 'include' in tag.get_text().lower()
-                                                )
-                    # print(components)
-                    try:
+                for link_url in url_list:
+                    # visit page
+                    page_response = requests.get(link_url)
+                    if page_response.status_code == 200:
+                        page_soup = BeautifulSoup(page_response.content, 'html.parser')
+                        # mayoclinic
+                        if "mayoclinic.org" in link_url:
+                            symptom_h = page_soup.find(lambda tag: (tag.name in ['h2'])
+                                                            and 'symptoms' in tag.get_text().lower()
+                                                        )
+                            # print(f"{keyword} {link_url} symptoms:")
+                            symptoms_components = symptom_h.find_next_siblings(lambda tag: (tag.name in ['p','ul']))
+                            if not symptoms_components:
+                                symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+                                while not symptoms_components:
+                                    symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+                            symptoms_text = ''
+                            for sym_com in symptoms_components:
+                                symptoms_text += sym_com.get_text()
 
-                        print(f"{disease_name} {keyword} {link_url} symptoms:")
-                        ul_element = component.find_next('ul')
-                        print(ul_element.get_text())
-                    except:
-                        pass
-                
-        
-    break
+                            # for sym_com in symptoms_components:
+                            #     print(sym_com.get_text())
 
+                        elif "clevelandclinic.org" in link_url:
+                            symptom_h = page_soup.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                                            and 'symptoms' in tag.get_text().lower()
+                                                            and 'of' in tag.get_text().lower()
+                                                        )
+                            # print(f"{keyword} {link_url} symptoms:")
+                            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+                            if not symptoms_components:
+                                symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+                                while not symptoms_components:
+                                    symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+                        
+                            symptoms_text = ''
+                            for sym_com in symptoms_components:
+                                symptoms_text += sym_com.get_text()
+
+                        ###### ADD ELIF HERE!!!!
+
+                    new_data = {
+                        'Disease': [disease_name],
+                        'Keyword': [keyword],
+                        'Website': [website],
+                        'Symptoms': [symptoms_text]
+                    }
+                    new_df = pd.DataFrame(new_data)
+                    df = pd.concat([df, new_df])
+
+
+print(df)
 
 
 
