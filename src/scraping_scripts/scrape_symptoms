@@ -46,13 +46,12 @@ import csv
 
 ### ADD NAME OF WEBSITE HERE!!!!!!
 websites = ['Mayo Clinic', 
-            'Cleveland clinic',
+            'Cleveland Clinic',
             'WebMD',
             'Healthline',
             'NIAMS',
             'Harvard Health'
-            'AAD',
-            ]
+            'AAD']
 
 disease = {
     'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']}
