@@ -207,7 +207,18 @@ for website in websites:
                             for sym_com in symptoms_components:
                                 symptoms_text += sym_com.get_text()
                                     
-                        ###### ADD ELIF HERE!!!!
+                        # wikipedia
+                        elif "wikipedia" in link_url:
+                            symptom_h = page_soup.find(lambda tag: (tag.name in ['h2'])
+                                and 'symptoms' in tag.get_text().lower()
+                            )
+                            # Check if symptom_h is not None
+                            if symptom_h:
+                                symptoms_components = symptom_h.find_next('p')
+                                if symptoms_components:
+                                    symptoms_text = symptoms_components.get_text()
+                                    
+			###### ADD ELIF HERE!!!!
 
                     new_data = {
                         'Disease': [disease_name],
