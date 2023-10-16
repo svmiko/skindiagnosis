@@ -54,7 +54,9 @@ websites = ['Mayo Clinic',
             'Harvard Health'
             'AAD',
             'cedars-sinai',
-	    'Wikipedia']
+	    'Wikipedia',
+	    'Skinsight',
+            'Dermnetnz']
 
 disease = {
     'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']}
@@ -222,6 +224,39 @@ for website in websites:
                                 symptoms_components = symptom_h.find_next('p')
                                 if symptoms_components:
                                     symptoms_text = symptoms_components.get_text()
+
+			elif "skinsight" in link_url:
+                            symptom_h = page_soup.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                                            and 'symptoms' in tag.get_text().lower()
+                                                            and 'of' in tag.get_text().lower()
+                                                        )
+                            # print(f"{keyword} {link_url} symptoms:")
+                            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+                            if not symptoms_components:
+                                symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+                                while not symptoms_components:
+                                    symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+                        
+                            symptoms_text = ''
+                            for sym_com in symptoms_components:
+                                symptoms_text += sym_com.get_text()
+                        
+                        #dermnetnz
+                        elif "dermnetnz" in link_url:
+                            symptom_h = page_soup.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                                            and 'symptoms' in tag.get_text().lower()
+                                                            and 'of' in tag.get_text().lower()
+                                                        )
+                            # print(f"{keyword} {link_url} symptoms:")
+                            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+                            if not symptoms_components:
+                                symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+                                while not symptoms_components:
+                                    symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+                        
+                            symptoms_text = ''
+                            for sym_com in symptoms_components:
+                                symptoms_text += sym_com.get_text()
 			###### ADD ELIF HERE!!!!
 
 
