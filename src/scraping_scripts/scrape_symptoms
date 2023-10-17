@@ -56,7 +56,8 @@ websites = ['Mayo Clinic',
             'cedars-sinai',
 	    'Wikipedia',
 	    'Skinsight',
-            'Dermnetnz']
+            'Dermnetnz',
+	    'NHS']
 
 disease = {
     'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']}
@@ -261,6 +262,26 @@ for website in websites:
                             symptoms_text = ''
                             for sym_com in symptoms_components:
                                 symptoms_text += sym_com.get_text()
+			elif "nhs" in link_url: 
+			    symptom_h = page_soup.find(lambda tag: (tag.name in ['h2'])
+                                and 'symptoms' in tag.get_text().lower()
+                            )
+                            # Check if symptom_h is not None
+                            if symptom_h:
+                                next_ele = symptom_h.find_next()
+                                while next_ele.name != 'h2' and next_ele.name != 'h3':
+                                    symptoms_components = next_ele
+                                    next_ele = next_ele.find_next()
+                                    symptoms_text += symptoms_components.get_text()
+                                
+                            else:
+                                symptom_h = page_soup.find('h1')
+                                if symptom_h:
+                                    
+                                    
+                                    symptoms_components = symptom_h.find_next('p')
+                                    symptoms_text = symptoms_components.get_text()
+                                    
 			###### ADD ELIF HERE!!!!
 
 
