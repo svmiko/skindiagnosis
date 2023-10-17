@@ -6,11 +6,11 @@ import time
 from scrape_functions import *
 
 
-websites = ['Mayo Clinic', 
-            'Cleveland Clinic',
+websites = [#'Mayo Clinic', 
+            #'Cleveland Clinic',
             # 'WebMD',
-            # 'Healthline',
-            # 'NIAMS',
+            #'Healthline.com',
+            'niams.nih.gov',
             # 'Harvard Health'
             # 'AAD',
             # 'cedars-sinai',
@@ -86,11 +86,18 @@ def scrape_data(url_list):
         # print(page_response.status_code)
         if page_response.status_code == 200:
             page_soup = BeautifulSoup(page_response.content, 'html.parser')
-            # mayoclinic
+
             if "mayoclinic.org" in link_url:
-                df = add_to_df(df,disease_name, keyword, website, scrape_mayoclinic(page_soup))
+                df = add_to_df(df,disease_name, keyword, link_url, scrape_mayoclinic(page_soup))
+
             elif "clevelandclinic.org" in link_url:
-                df = add_to_df(df,disease_name, keyword, website, scrape_cleveland(page_soup))
+                df = add_to_df(df,disease_name, keyword, link_url, scrape_cleveland(page_soup))
+
+            elif "healthline.com" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_healthline(page_soup))
+            
+            elif "niams.nih.gov" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_niams(page_soup))
 
     return df
 
