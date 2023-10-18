@@ -100,6 +100,8 @@ def scrape_data(url_list):
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_niams(page_soup))
             elif "wikipedia" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_wikipedia(page_soup))
+            elif "rarediseases" in link_url: 
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_rarediseases(page_soup))
     return df
 
 
