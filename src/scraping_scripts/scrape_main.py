@@ -10,11 +10,11 @@ websites = [#'Mayo Clinic',
             #'Cleveland Clinic',
             # 'WebMD',
             #'Healthline.com',
-            'niams.nih.gov',
+            #'niams.nih.gov',
             # 'Harvard Health'
             # 'AAD',
             # 'cedars-sinai',
-	        # 'Wikipedia',
+	         'Wikipedia',
 	        # 'Skinsight',
             # 'Dermnetnz',
 	        # 'NHS',
@@ -98,7 +98,8 @@ def scrape_data(url_list):
             
             elif "niams.nih.gov" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_niams(page_soup))
-
+            elif "wikipedia" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_wikipedia(page_soup))
     return df
 
 

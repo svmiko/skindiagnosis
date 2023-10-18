@@ -79,7 +79,20 @@ def scrape_niams(page):
         pass
 
 
-
+def scrape_wikipedia(page):
+    try: 
+        symptom_h = page.find(lambda tag: (tag.name in ['h2']) and 'symptoms' in tag.get_text().lower())
+        # Check if symptom_h is not None
+        if symptom_h:
+            symptoms_components = symptom_h.find_next('p')
+            if symptoms_components:
+                symptoms_text = symptoms_components.get_text()
+        else:
+            symptoms_components = page_soup.find_next('p')
+            symptoms_text = symptoms_components.get_text()
+        return(symptoms_text)
+    except:
+        pass
 #test 
 # import requests
 # from bs4 import BeautifulSoup
