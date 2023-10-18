@@ -88,7 +88,7 @@ def scrape_wikipedia(page):
             if symptoms_components:
                 symptoms_text = symptoms_components.get_text()
         else:
-            symptoms_components = page_soup.find_next('p')
+            symptoms_components = page.find('p')
             symptoms_text = symptoms_components.get_text()
         return(symptoms_text)
     except:
@@ -110,6 +110,21 @@ def scrape_rarediseases(page):
         return(symptoms_text)
     except:
         pass
+    
+def scrape_aad(page):
+    try: 
+        symptoms_text = ""
+        symptom_h = page.find('section', class_ = 'content')
+        if symptom_h: 
+            symptoms_components = symptom_h.find_all('p')
+            for p in symptoms_components:
+                symptoms_text += p.get_text() 
+        else:
+            symptoms_text = "not found"
+        return symptoms_text
+    except:
+        pass
+
 #test 
 # import requests
 # from bs4 import BeautifulSoup
