@@ -104,6 +104,12 @@ def scrape_data(url_list):
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_rarediseases(page_soup))
             elif "aad.org" in link_url: 
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_aad(page_soup))
+            elif "webmd.com" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
+            elif "cedars-sinai.org" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_cedars_sinai(page_soup))
+            elif "skinsight.com" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
     return df
 
 
