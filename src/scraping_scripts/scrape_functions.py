@@ -124,8 +124,6 @@ def scrape_aad(page):
         return symptoms_text
     except:
         pass
-
-<<<<<<< HEAD
     
 def scrape_medline(page):
     try: 
