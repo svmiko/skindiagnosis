@@ -262,6 +262,65 @@ def scrape_harvardhealth(page):
     except:
         pass
 
+#webmd, have terms of service that prohibit scraping, so might not work
+def scrape_wedmd(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'symptoms' in tag.get_text().lower()
+                                and 'of' in tag.get_text().lower()
+                            )
+        #print(f"{keywords} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+    
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+
+# cedars-sinai
+def scrape_cedars_sinai(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'symptoms' in tag.get_text().lower()
+                                and 'of' in tag.get_text().lower()
+                            )
+        #print(f"{keywords} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+    
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+
+#skinsight
+def scrape_skinsight(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'symptoms' in tag.get_text().lower()
+                            )
+        #print(f"{keywords} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+    
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+
 
 
 #test 
