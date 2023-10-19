@@ -125,6 +125,79 @@ def scrape_aad(page):
     except:
         pass
 
+    
+def scrape_medline(page):
+    try: 
+        symptom_h = page.find(lambda tag: (tag.name in ['h2']) and 'symptoms' in tag.get_text().lower())
+        
+        if symptom_h:
+            symptoms_components = symptom_h.find_next('p')
+            #print(f"symptoms_components: {symptoms_components}")
+            if symptoms_components:
+                symptoms_text = symptoms_components.get_text()
+                #print(f"symptoms_text: {symptoms_text}")
+        else:
+            symptoms_components = page.find('p')
+            symptoms_text = symptoms_components.get_text()
+            symptoms_text = 'None'
+        return(symptoms_text)
+    except:
+        pass
+
+def scrape_msdmanuals(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h2'])
+                                        and 'symptoms' in tag.get_text().lower()
+                                    )
+        symptoms_components = symptom_h.find_next_siblings(lambda tag: (tag.name in ['p','ul']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+        return symptoms_text
+    except:
+        pass
+
+def scrape_patientinfo(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h2','p'])
+                              and 'symptoms' in tag.get_text().lower())
+                                                        
+        # print(f"{keyword} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+        symptoms_text = ''
+        print(f"symptoms_text: {symptoms_text}")
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+                
+
+def scrape_harvardhealth(page):
+    try: 
+        symptom_h = page.find(lambda tag: (tag.name in ['h2'])
+                                        and 'symptoms' in tag.get_text().lower()
+                                        and 'of' in tag.get_text().lower()
+                                    )
+        # print(f"{keyword} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+    
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
 #test 
 # import requests
 # from bs4 import BeautifulSoup

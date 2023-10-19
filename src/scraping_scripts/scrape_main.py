@@ -11,22 +11,24 @@ websites = [#'Mayo Clinic',
             # 'WebMD',
             #'Healthline.com',
             #'niams.nih.gov',
-            # 'Harvard Health'
+            #'Harvard Health'
             # 'AAD',
             # 'cedars-sinai',
-	         'Wikipedia',
+	        # 'Wikipedia',
 	        # 'Skinsight',
             # 'Dermnetnz',
 	        # 'NHS',
             # 'cdc',
             # 'rarediseases',
-            # 'msdmanuals',
-            # 'pennmedicine'
+            #'msdmanuals',
+            #'medline',
+            #'patientinfo'
             ]
 
 disease = {
-    #'Pigmentation Disorders': ['Vitiligo', 'Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation'],
-    'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']}
+    'Pigmentation Disorders': ['Vitiligo','Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']
+    #'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
+    }
 
 
 
@@ -51,10 +53,10 @@ def get_websites(disease_dict, websites_list):
             for keyword in keywords:
                 query = f'{website} {keyword} symptoms'
                 search_url = f'https://www.google.com/search?q={query}'
-                # print(search_url)  
+                #print(search_url)  
                 response = requests.get(search_url)
                 time.sleep(2) # a delay between requests
-            #print(response.status_code)
+                #print(response.status_code)
                 if response.status_code == 200:
                     soup = BeautifulSoup(response.content, 'html.parser')
                     url_list.append([disease_name, keyword, website, extract_first_url(soup)])
@@ -98,12 +100,27 @@ def scrape_data(url_list):
             
             elif "niams.nih.gov" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_niams(page_soup))
+
             elif "wikipedia" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_wikipedia(page_soup))
+
             elif "rarediseases" in link_url: 
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_rarediseases(page_soup))
+
             elif "aad.org" in link_url: 
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_aad(page_soup))
+
+            elif "medlineplus.gov" in link_url: 
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_medline(page_soup))
+
+            elif "msdmanuals.com" in link_url: 
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_msdmanuals(page_soup))
+
+            elif "patient.info" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_patientinfo(page_soup))
+
+            # elif "health.harvard.edu" in link_url:
+            #     df = add_to_df(df, disease_name, keyword, link_url, scrape_harvardhealth(page_soup))
     return df
 
 

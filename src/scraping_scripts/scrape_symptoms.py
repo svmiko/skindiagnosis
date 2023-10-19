@@ -226,7 +226,7 @@ for website in websites:
                                 if symptoms_components:
                                     symptoms_text = symptoms_components.get_text()
 			    else: 
-			    	symptoms_components = page_sourp.find('p')
+			    	symptoms_components = page_soup.find('p')
 				symptoms_text = symptoms_components.get_text()
 
 
