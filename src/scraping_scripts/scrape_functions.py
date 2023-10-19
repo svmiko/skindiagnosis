@@ -124,6 +124,7 @@ def scrape_aad(page):
         return symptoms_text
     except:
         pass
+<<<<<<< HEAD
 
 def scrape_dermnetnz(page):
     try:
@@ -188,6 +189,8 @@ def scrape_cdc(page):
             symptoms_text += sym_com.get_text()
     except:
         pass
+=======
+>>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
     
 def scrape_medline(page):
     try: 
@@ -250,6 +253,57 @@ def scrape_harvardhealth(page):
                                         and 'of' in tag.get_text().lower()
                                     )
         # print(f"{keyword} {link_url} symptoms:")
+<<<<<<< HEAD
+=======
+
+def scrape_dermnetnz(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'symptoms' in tag.get_text().lower()
+                                and 'of' in tag.get_text().lower()
+                            )
+        # print(f"{keyword} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+
+def scrape_NHS(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h2'])
+                                        and 'symptoms' in tag.get_text().lower()
+                                    )
+                            # Check if symptom_h is not None
+        if symptom_h:
+            next_ele = symptom_h.find_next()
+            while next_ele.name != 'h2' and next_ele.name != 'h3':
+                symptoms_components = next_ele
+                next_ele = next_ele.find_next()
+                symptoms_text += symptoms_components.get_text()
+            symptom_h = page.find(lambda tag: (tag.name in ['h1'])
+                                        and 'symptoms' in tag.get_text().lower()
+                                    )
+            if symptom_h:
+                symptoms_components = symptom_h.find_next('p')
+                symptoms_text = symptoms_components.get_text()
+    except:
+        pass
+
+def scrape_cdc(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'symptoms' in tag.get_text().lower()
+                                and 'of' in tag.get_text().lower()
+                            )
+        #print(f"{keywords} {link_url} symptoms:")
+>>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
         symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
         if not symptoms_components:
             symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
@@ -322,7 +376,10 @@ def scrape_skinsight(page):
         pass
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
 #test 
 # import requests
 # from bs4 import BeautifulSoup
