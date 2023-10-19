@@ -188,7 +188,6 @@ def scrape_harvardhealth(page):
                                         and 'of' in tag.get_text().lower()
                                     )
         # print(f"{keyword} {link_url} symptoms:")
-=======
 
 def scrape_dermnetnz(page):
     try:
@@ -225,8 +224,6 @@ def scrape_NHS(page):
                                         and 'symptoms' in tag.get_text().lower()
                                     )
             if symptom_h:
-                
-                
                 symptoms_components = symptom_h.find_next('p')
                 symptoms_text = symptoms_components.get_text()
     except:
@@ -239,7 +236,6 @@ def scrape_cdc(page):
                                 and 'of' in tag.get_text().lower()
                             )
         #print(f"{keywords} {link_url} symptoms:")
->>>>>>> 9f48ec748bc04022b39ffd5b0c7fb2faaf737b52
         symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
         if not symptoms_components:
             symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
@@ -251,8 +247,6 @@ def scrape_cdc(page):
             symptoms_text += sym_com.get_text()
     except:
         pass
-<<<<<<< HEAD
-=======
 
 #webmd, have terms of service that prohibit scraping, so might not work
 def scrape_wedmd(page):
@@ -314,7 +308,6 @@ def scrape_skinsight(page):
         pass
 
 
->>>>>>> 9f48ec748bc04022b39ffd5b0c7fb2faaf737b52
 #test 
 # import requests
 # from bs4 import BeautifulSoup
