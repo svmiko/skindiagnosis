@@ -124,7 +124,6 @@ def scrape_aad(page):
         return symptoms_text
     except:
         pass
-<<<<<<< HEAD
 
 def scrape_dermnetnz(page):
     try:
@@ -189,8 +188,6 @@ def scrape_cdc(page):
             symptoms_text += sym_com.get_text()
     except:
         pass
-=======
->>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
     
 def scrape_medline(page):
     try: 
@@ -253,8 +250,8 @@ def scrape_harvardhealth(page):
                                         and 'of' in tag.get_text().lower()
                                     )
         # print(f"{keyword} {link_url} symptoms:")
-<<<<<<< HEAD
-=======
+    except:
+        pass
 
 def scrape_dermnetnz(page):
     try:
@@ -303,7 +300,6 @@ def scrape_cdc(page):
                                 and 'of' in tag.get_text().lower()
                             )
         #print(f"{keywords} {link_url} symptoms:")
->>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
         symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
         if not symptoms_components:
             symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
@@ -376,10 +372,7 @@ def scrape_skinsight(page):
         pass
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 214092172e26d1e0ee4ea094e6adbc1abdf7907a
 #test 
 # import requests
 # from bs4 import BeautifulSoup

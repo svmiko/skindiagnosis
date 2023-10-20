@@ -1,17 +1,18 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import os  
 import csv
 import time
 from scrape_functions import *
 
 
-websites = [#'Mayo Clinic', 
-            #'Cleveland Clinic',
-            # 'WebMD',
-            #'Healthline.com',
-            #'niams.nih.gov',
-            #'Harvard Health'
+websites = ['Mayo Clinic', 
+            'Cleveland Clinic',
+            #'WebMD',
+            # 'Healthline.com',
+            # 'niams.nih.gov',
+            # 'Harvard Health'
             # 'AAD',
             # 'cedars-sinai',
 	        # 'Wikipedia',
@@ -20,8 +21,8 @@ websites = [#'Mayo Clinic',
 	        # 'NHS',
             # 'cdc',
             # 'rarediseases',
-            #'msdmanuals',
-            #'medline',
+            # 'msdmanuals',
+            # 'medline',
             #'patientinfo'
             ]
 
@@ -84,7 +85,8 @@ def scrape_data(url_list):
     df = pd.DataFrame(data)
     for disease_name, keyword, website, link_url in url_list:
     # visit page
-        page_response = requests.get(link_url)
+        page_response = requests.get(link_url, verify=False)
+        time.sleep(2)
         # print(page_response.status_code)
         if page_response.status_code == 200:
             page_soup = BeautifulSoup(page_response.content, 'html.parser')
@@ -119,8 +121,8 @@ def scrape_data(url_list):
             elif "patient.info" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_patientinfo(page_soup))
 		    
-	    elif "webmd.com" in link_url:
-                df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
+	        # elif "webmd.com" in link_url:
+            #   df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
 		    
             elif "cedars-sinai.org" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_cedars_sinai(page_soup))
@@ -135,8 +137,9 @@ def scrape_data(url_list):
     return df
 
 
-print(scrape_data(get_websites(disease,websites)))
+scraped_data = (scrape_data(get_websites(disease,websites)))
 
+scraped_data.to_csv('/Users/sumiko/Desktop/git/skindiagnosis/data/scraped_data/test.csv')
 
 
 # test code
