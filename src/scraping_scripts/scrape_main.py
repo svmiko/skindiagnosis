@@ -33,6 +33,11 @@ disease = {
     'Poison Ivy and Contact Dermatitis': ['Poison Ivy', 'Contact Dermatitis'],
     'Acne and Rosacea': ['Acne', 'Rosacea', 'Hidradenitis suppurativa', 'Perioral Dermatitis'],
     'Vascular Tumors': ['Hemangioma', 'Kaposi sarcoma', 'Angiokeratoimas', 'Angioma', 'Pyogenic granulomas', 'Telangiectasia'],
+    'Eczema': ['Dermatitis', 'Chapped', 'Fissured', 'Desquamation', 'Dyshidrosis', 'Asteatotic', 'Nummular', 'Factitial', 'Dry', 'Iododerma', 'Keratolysis Exfoliativa', 'Lichen Simplex Chronicus', 'Maceration', 'Milroy Disease', 'Neurotic Excoriations', 'Parasitosis Psychogenic', 'Phlesbitis Superficial', 'Pompholyx', 'Prurigo Nodularis'],
+    'Psoriasis or Lichen Planus': ['Pinking', 'Amiantacea', 'Axillary Granular Parakeratosis', 'Lichen Nitidus', 'Lichen Planus', 'Sclerosis', 'Pityriasis', 'Psoriasis', 'Reiter syndrome', 'Seborrheic Dermatitis'],
+    'Exanthems and Drug Eruptions': ['Desquamation', 'Entrerovirus', 'Erythema Infectiosum', 'Exfoliative Dermatitis', 'Gianotti Crosti', 'Hand Foot Mouth Disease', 'Kawasaki Syndrome', 'Minocycline Pigmentation', 'Roseola Infantum', 'Scarlet Fever', 'Viral Exanthems'],
+    'Lupus and other Connective Tissue diseases': ['Acroyanosis', 'Chilblains Perniosis', 'Crest Syndrome', 'Dermatomyositis', 'Erythromelagia', 'Morphea', 'Mucinosis', 'Raynaud Disease', 'Rjeumtoid nodule', 'scleroderma'],
+    'Scabies Lyme Diease and other Infestations and Bites': ['Biting insects', 'Cactus Granuloma', 'Cat bite', 'caterpillar dermatitis', 'Chigger bites bullous', 'coral poisoning', 'cutaneous larva migrans', 'duck itch', 'fire ants', 'flea bites', 'jelly fish sting', 'leishamaniasis', 'Maculae Cerulea', 'Myiasis', 'pediculosis', 'public lice', 'Spider bite', 'tick bite'],
 
     'Pigmentation Disorders': ['Vitiligo','Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']
     #'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
