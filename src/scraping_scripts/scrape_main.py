@@ -23,7 +23,8 @@ websites = ['Mayo Clinic',
             # 'rarediseases',
             # 'msdmanuals',
             # 'medline',
-            #'patientinfo'
+            #'patientinfo',
+            # 'dermnet'
             ]
 
 disease = {
@@ -148,6 +149,9 @@ def scrape_data(url_list):
 		    
             elif "skinsight.com" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
+            
+            elif "dermnetnz.org" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
 
             # elif "health.harvard.edu" in link_url:
             #     df = add_to_df(df, disease_name, keyword, link_url, scrape_harvardhealth(page_soup))
