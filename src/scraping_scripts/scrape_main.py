@@ -27,6 +27,13 @@ websites = ['Mayo Clinic',
             ]
 
 disease = {
+
+    'Urticaria Hives': ['Urticaria', 'Dermatographism', 'Angiodema', 'Urticarial vasculitis','Cholinergic urticaria'],
+    'Benign Tumors': ['Seborrheic Keratosis', 'Dermatofibroma', 'Chondrodermatitis', 'Epidermal Cyst', 'Keratoacanthoma', 'Sebaceous Hyperplasia', 'Keloid'],
+    'Poison Ivy and Contact Dermatitis': ['Poison Ivy', 'Contact Dermatitis'],
+    'Acne and Rosacea': ['Acne', 'Rosacea', 'Hidradenitis suppurativa', 'Perioral Dermatitis'],
+    'Vascular Tumors': ['Hemangioma', 'Kaposi sarcoma', 'Angiokeratoimas', 'Angioma', 'Pyogenic granulomas', 'Telangiectasia'],
+
     'Pigmentation Disorders': ['Vitiligo','Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation']
     #'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
     }
