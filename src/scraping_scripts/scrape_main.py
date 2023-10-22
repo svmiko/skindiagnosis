@@ -47,7 +47,12 @@ disease = {
     'Nail Fungus and other Nail Disease': ['Onychomycosis', 'Paronychia','Onychorrhexis','Alopecea Areata'],
     'Tinea Ringworm Candidiasis and other Fungal Infections': ['Ringworm (Tinea Corporis)', 'Candidiasis', 'Tinea Versicolor','Cheilitis','Candida','Armpit Yeast Infection','Tinea Incognito','Intertrigo','Oral thrush','actinomycosis','coccidiomycosis','Confluent and Reticulated Papillomatosis','Erosio interdigitalis blastomycetica','erythrasma','kerion','Blastomycosis','Angular Cheilitis','Pitted Keratolysis','Pityrosporum','Tinea barbae','ringworm','Tinea Faciei','Athletes foot','jock itch','Tinea Manuum','Tinea Capitis'],
     'Systematic Diseases': {'Acanthosis nigricans','Acrodermatitis enteropathica','amyloidosis','Cowden Syndrome','Diabetes','Elastosis Perforans Serpiginosa','Glucagonoma','Granuloma Annulare','Lichen amyloidosis','Lichen Myxedematosus','lipoid proteinosis','myxedema','Necrobiosis Lipoidica Diabeticorum','Neurofibromatosis','Endocarditis','pellagra','Pretibial Myxedema','rheumatoid nodule','Sarcoidosis','Sebaceous Adenoma','Tuberous sclerosis','Xanthoma'},
-    'Light Diseases and Disorders of Pigmentation': {'Actinic keratosis','Solar comedones','Albinism','Colloid milium','Erythema ab igne','Erythema dyschromicum perstans','Hydroa vacciniforme','Idiopathic guttate hypomelanosis','lentigo','Melasma','Millia','Mongolian Blue Spots','Nevus Anemicus','Photosensitivity','piebaldism','Poikiloderma of Civatte','Polymorphous light eruption','Porphyria ','Post Inflammatory Hyperpigmentation','Pseudoporphyria','Sun Damaged Skin','Vitiligo'}
+    'Light Diseases and Disorders of Pigmentation': {'Actinic keratosis','Solar comedones','Albinism','Colloid milium','Erythema ab igne','Erythema dyschromicum perstans','Hydroa vacciniforme','Idiopathic guttate hypomelanosis','lentigo','Melasma','Millia','Mongolian Blue Spots','Nevus Anemicus','Photosensitivity','piebaldism','Poikiloderma of Civatte','Polymorphous light eruption','Porphyria ','Post Inflammatory Hyperpigmentation','Pseudoporphyria','Sun Damaged Skin','Vitiligo'},
+    'Atopic Dermatitis': ['Eczema', 'Contact Dermatitis'],
+    'Viral Infections': ['Warts', 'Molluscum Contagiosum'],
+    'Malignant Lesions': ['Basal Cell Carcinoma', 'Squamous Cell Carcinoma', 'Merkel Cell Carcinoma'],
+    'Melanoma': ['Superficial Spreading Melanoma', 'Nodular Melanoma', 'Lentigo Maligna Melanoma'],
+    'Vasculitis': ['Hypersensitivity Vasculitis', 'Granulomatosis with Polyangiitis']
     #'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
     }
 
