@@ -225,12 +225,12 @@ for website in websites:
                                 symptoms_components = symptom_h.find_next('p')
                                 if symptoms_components:
                                     symptoms_text = symptoms_components.get_text()
-			    else: 
-			    	symptoms_components = page_soup.find('p')
-				symptoms_text = symptoms_components.get_text()
+                                else: 
+			    	                symptoms_components = page_soup.find('p')
+				                    symptoms_text = symptoms_components.get_text()
 
 
-			elif "skinsight" in link_url:
+			        elif "skinsight" in link_url:
                             symptom_h = page_soup.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
                                                             and 'symptoms' in tag.get_text().lower()
                                                             and 'of' in tag.get_text().lower()
