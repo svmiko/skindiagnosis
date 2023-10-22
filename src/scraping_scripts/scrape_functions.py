@@ -372,6 +372,26 @@ def scrape_skinsight(page):
         pass
 
 
+#dermnet
+def scrape_dermnet(page):
+    try:
+        symptom_h = page.find(lambda tag: (tag.name in ['h1','h2','h3','section','div','p'])
+                                and 'features' in tag.get_text().lower()
+                            )
+        #print(f"{keywords} {link_url} symptoms:")
+        symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['p','ul','h4']))
+        if not symptoms_components:
+            symptoms_components = symptom_h.find_next(lambda tag: (tag.name in ['div']))
+            while not symptoms_components:
+                symptoms_components = symptoms_components.find_next(lambda tag: (tag.name in ['p','ul','div']))
+    
+        symptoms_text = ''
+        for sym_com in symptoms_components:
+            symptoms_text += sym_com.get_text()
+    except:
+        pass
+
+
 
 #test 
 # import requests

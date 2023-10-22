@@ -23,26 +23,32 @@ websites = ['Mayo Clinic',
             # 'rarediseases',
             # 'msdmanuals',
             # 'medline',
-            #'patientinfo'
+            #'patientinfo',
+            # 'dermnet'
             ]
 
 disease = {
 
     'Urticaria Hives': ['Urticaria', 'Dermatographism', 'Angiodema', 'Urticarial vasculitis','Cholinergic urticaria'],
-    # 'Benign Tumors': ['Seborrheic Keratosis', 'Dermatofibroma', 'Chondrodermatitis', 'Epidermal Cyst', 'Keratoacanthoma', 'Sebaceous Hyperplasia', 'Keloid'],
-    # 'Poison Ivy and Contact Dermatitis': ['Poison Ivy', 'Contact Dermatitis'],
-    # 'Acne and Rosacea': ['Acne', 'Rosacea', 'Hidradenitis suppurativa', 'Perioral Dermatitis'],
-    # 'Vascular Tumors': ['Hemangioma', 'Kaposi sarcoma', 'Angiokeratoimas', 'Angioma', 'Pyogenic granulomas', 'Telangiectasia'],
-    # 'Eczema': ['Dermatitis', 'Chapped', 'Fissured', 'Desquamation', 'Dyshidrosis', 'Asteatotic', 'Nummular', 'Factitial', 'Dry', 'Iododerma', 'Keratolysis Exfoliativa', 'Lichen Simplex Chronicus', 'Maceration', 'Milroy Disease', 'Neurotic Excoriations', 'Parasitosis Psychogenic', 'Phlesbitis Superficial', 'Pompholyx', 'Prurigo Nodularis'],
-    # 'Psoriasis or Lichen Planus': ['Pinking', 'Amiantacea', 'Axillary Granular Parakeratosis', 'Lichen Nitidus', 'Lichen Planus', 'Sclerosis', 'Pityriasis', 'Psoriasis', 'Reiter syndrome', 'Seborrheic Dermatitis'],
-    # 'Exanthems and Drug Eruptions': ['Desquamation', 'Entrerovirus', 'Erythema Infectiosum', 'Exfoliative Dermatitis', 'Gianotti Crosti', 'Hand Foot Mouth Disease', 'Kawasaki Syndrome', 'Minocycline Pigmentation', 'Roseola Infantum', 'Scarlet Fever', 'Viral Exanthems'],
-    # 'Lupus and other Connective Tissue diseases': ['Acroyanosis', 'Chilblains Perniosis', 'Crest Syndrome', 'Dermatomyositis', 'Erythromelagia', 'Morphea', 'Mucinosis', 'Raynaud Disease', 'Rjeumtoid nodule', 'scleroderma'],
-    # 'Scabies Lyme Diease and other Infestations and Bites': ['Biting insects', 'Cactus Granuloma', 'Cat bite', 'caterpillar dermatitis', 'Chigger bites bullous', 'coral poisoning', 'cutaneous larva migrans', 'duck itch', 'fire ants', 'flea bites', 'jelly fish sting', 'leishamaniasis', 'Maculae Cerulea', 'Myiasis', 'pediculosis', 'public lice', 'Spider bite', 'tick bite'],
-    # 'Pigmentation Disorders': ['Vitiligo','Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation'],
-    # 'Cellulitis Impetigo and other Bacterial Infections': ['Cellulitis', 'Impetigo','Eczema Staph', 'Pseudomonfoll', 'Balanitis Bacterial', 'Botryomycosis Staph','Ecthyma','Erysipelas', 'Erysipeloid','Folliculitis', 'Furuncles Carbuncles', 'Leprosy', 'Pseudomonas Cellulitis', 'Staphylococcal Folliculitis', 'Sycosis Barbae', 'atypical mycobacterium', 'meningococcemia','otitis externa', 'pitted keratolysis'],
-    # 'Hair Loss Alopecia and other Hair Diseases': ['Alopecia Areata', 'Androgenetic Alopecia', 'Telogen Effluvium', 'acne keloidalis', 'discoid lupus', 'dissecting cellulitis', 'folliculitis decalvans', 'hirsutism', 'hot comb alopecia', 'lichen planopilaris', 'pili torti', 'pseudopelade', 'telogen effluvium', 'trichorrhexis nodosa', 'trichotillomania', 'tufted folliculitis'],
-    # 'Herpes HPV and other STDs': ['Herpes Simplex', 'HPV (Human Papillomavirus)', 'Syphilis','AIDS', 'bacterial vaginosis', 'chancroid', 'genital herpes simplex', 'genital ulcers', 'genital warts', 'gonorrhea', 'herpes type 2 primary', 'molluscum contagiosum', 'pearly penile papules', 'warts mouth']
-    # 'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
+    'Benign Tumors': ['Seborrheic Keratosis', 'Dermatofibroma', 'Chondrodermatitis', 'Epidermal Cyst', 'Keratoacanthoma', 'Sebaceous Hyperplasia', 'Keloid'],
+    'Poison Ivy and Contact Dermatitis': ['Poison Ivy', 'Contact Dermatitis'],
+    'Acne and Rosacea': ['Acne', 'Rosacea', 'Hidradenitis suppurativa', 'Perioral Dermatitis'],
+    'Vascular Tumors': ['Hemangioma', 'Kaposi sarcoma', 'Angiokeratoimas', 'Angioma', 'Pyogenic granulomas', 'Telangiectasia'],
+    'Eczema': ['Dermatitis', 'Chapped', 'Fissured', 'Desquamation', 'Dyshidrosis', 'Asteatotic', 'Nummular', 'Factitial', 'Dry', 'Iododerma', 'Keratolysis Exfoliativa', 'Lichen Simplex Chronicus', 'Maceration', 'Milroy Disease', 'Neurotic Excoriations', 'Parasitosis Psychogenic', 'Phlesbitis Superficial', 'Pompholyx', 'Prurigo Nodularis'],
+    'Psoriasis or Lichen Planus': ['Pinking', 'Amiantacea', 'Axillary Granular Parakeratosis', 'Lichen Nitidus', 'Lichen Planus', 'Sclerosis', 'Pityriasis', 'Psoriasis', 'Reiter syndrome', 'Seborrheic Dermatitis'],
+    'Exanthems and Drug Eruptions': ['Desquamation', 'Entrerovirus', 'Erythema Infectiosum', 'Exfoliative Dermatitis', 'Gianotti Crosti', 'Hand Foot Mouth Disease', 'Kawasaki Syndrome', 'Minocycline Pigmentation', 'Roseola Infantum', 'Scarlet Fever', 'Viral Exanthems'],
+    'Lupus and other Connective Tissue diseases': ['Acroyanosis', 'Chilblains Perniosis', 'Crest Syndrome', 'Dermatomyositis', 'Erythromelagia', 'Morphea', 'Mucinosis', 'Raynaud Disease', 'Rjeumtoid nodule', 'scleroderma'],
+    'Scabies Lyme Diease and other Infestations and Bites': ['Biting insects', 'Cactus Granuloma', 'Cat bite', 'caterpillar dermatitis', 'Chigger bites bullous', 'coral poisoning', 'cutaneous larva migrans', 'duck itch', 'fire ants', 'flea bites', 'jelly fish sting', 'leishamaniasis', 'Maculae Cerulea', 'Myiasis', 'pediculosis', 'public lice', 'Spider bite', 'tick bite'],
+    'Pigmentation Disorders': ['Vitiligo','Albinism', 'Melasma', 'Freckles', 'Hypopigmentation', 'Hyperpigmentation'],
+    'Cellulitis Impetigo and other Bacterial Infections': ['Cellulitis', 'Impetigo','Eczema Staph', 'Pseudomonfoll', 'Balanitis Bacterial', 'Botryomycosis Staph','Ecthyma','Erysipelas', 'Erysipeloid','Folliculitis', 'Furuncles Carbuncles', 'Leprosy', 'Pseudomonas Cellulitis', 'Staphylococcal Folliculitis', 'Sycosis Barbae', 'atypical mycobacterium', 'meningococcemia','otitis externa', 'pitted keratolysis'],
+    'Hair Loss Alopecia and other Hair Diseases': ['Alopecia Areata', 'Androgenetic Alopecia', 'Telogen Effluvium', 'acne keloidalis', 'discoid lupus', 'dissecting cellulitis', 'folliculitis decalvans', 'hirsutism', 'hot comb alopecia', 'lichen planopilaris', 'pili torti', 'pseudopelade', 'telogen effluvium', 'trichorrhexis nodosa', 'trichotillomania', 'tufted folliculitis'],
+    'Herpes HPV and other STDs': ['Herpes Simplex', 'HPV (Human Papillomavirus)', 'Syphilis','AIDS', 'bacterial vaginosis', 'chancroid', 'genital herpes simplex', 'genital ulcers', 'genital warts', 'gonorrhea', 'herpes type 2 primary', 'molluscum contagiosum', 'pearly penile papules', 'warts mouth'],
+    'Bullous Disease': ['Pemphigus', 'Bullous Pemphigoid', 'Epidermolysis Bullosa'],
+    'Nail Fungus and other Nail Disease': ['Onychomycosis', 'Paronychia','Onychorrhexis','Alopecea Areata'],
+    'Tinea Ringworm Candidiasis and other Fungal Infections': ['Ringworm (Tinea Corporis)', 'Candidiasis', 'Tinea Versicolor','Cheilitis','Candida','Armpit Yeast Infection','Tinea Incognito','Intertrigo','Oral thrush','actinomycosis','coccidiomycosis','Confluent and Reticulated Papillomatosis','Erosio interdigitalis blastomycetica','erythrasma','kerion','Blastomycosis','Angular Cheilitis','Pitted Keratolysis','Pityrosporum','Tinea barbae','ringworm','Tinea Faciei','Athletes foot','jock itch','Tinea Manuum','Tinea Capitis'],
+    'Systematic Diseases': {'Acanthosis nigricans','Acrodermatitis enteropathica','amyloidosis','Cowden Syndrome','Diabetes','Elastosis Perforans Serpiginosa','Glucagonoma','Granuloma Annulare','Lichen amyloidosis','Lichen Myxedematosus','lipoid proteinosis','myxedema','Necrobiosis Lipoidica Diabeticorum','Neurofibromatosis','Endocarditis','pellagra','Pretibial Myxedema','rheumatoid nodule','Sarcoidosis','Sebaceous Adenoma','Tuberous sclerosis','Xanthoma'},
+    'Light Diseases and Disorders of Pigmentation': {'Actinic keratosis','Solar comedones','Albinism','Colloid milium','Erythema ab igne','Erythema dyschromicum perstans','Hydroa vacciniforme','Idiopathic guttate hypomelanosis','lentigo','Melasma','Millia','Mongolian Blue Spots','Nevus Anemicus','Photosensitivity','piebaldism','Poikiloderma of Civatte','Polymorphous light eruption','Porphyria ','Post Inflammatory Hyperpigmentation','Pseudoporphyria','Sun Damaged Skin','Vitiligo'}
+    #'Connective Tissue Diseases': ['Lupus', 'Scleroderma', 'Dermatomyositis']
     }
 
 
@@ -143,6 +149,9 @@ def scrape_data(url_list):
 		    
             elif "skinsight.com" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
+            
+            elif "dermnetnz.org" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
 
             # elif "health.harvard.edu" in link_url:
             #     df = add_to_df(df, disease_name, keyword, link_url, scrape_harvardhealth(page_soup))
