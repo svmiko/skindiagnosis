@@ -7,12 +7,12 @@ import time
 from scrape_functions import *
 
 
-websites = ['Mayo Clinic', 
+websites = [
+            'Mayo Clinic', 
             'Cleveland Clinic',
-            'WebMD',
+            # 'WebMD',
             'Healthline.com',
             'niams.nih.gov',
-            'Harvard Health'
             'AAD',
             'cedars-sinai',
 	        'Wikipedia',
@@ -144,6 +144,12 @@ def scrape_data(url_list):
 
             elif "patient.info" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_patientinfo(page_soup))
+            
+            elif "nhs.uk" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_NHS(page_soup))
+
+            elif "cdc.gov" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_cdc(page_soup))
 		    
 	        # elif "webmd.com" in link_url:
             #   df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
@@ -153,18 +159,18 @@ def scrape_data(url_list):
 		    
             elif "skinsight.com" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
-            
+
             elif "dermnetnz.org" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
+            
+            
 
-            # elif "health.harvard.edu" in link_url:
-            #     df = add_to_df(df, disease_name, keyword, link_url, scrape_harvardhealth(page_soup))
 
 	
     return df
 
 
-scraped_data = (scrape_data(get_websites(disease,websites)))
+scraped_data = scrape_data(get_websites(disease,websites))
 
 scraped_data.to_csv('scraped_data.csv')
 
