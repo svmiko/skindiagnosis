@@ -8,23 +8,23 @@ from scrape_functions import *
 
 
 websites = [
-            'Mayo Clinic', 
-            'Cleveland Clinic',
-            # 'WebMD',
-            'Healthline.com',
-            'niams.nih.gov',
-            'AAD',
-            'cedars-sinai',
-	        'Wikipedia',
-	        'Skinsight',
-            'Dermnetnz',
-	        'NHS',
-            'cdc',
-            'rarediseases',
-            'msdmanuals',
-            'medline',
-            'patientinfo',
-            'dermnet'
+            # 'Mayo Clinic', 
+            # 'Cleveland Clinic',
+            # # 'WebMD',
+            # 'Healthline.com',
+            # 'niams.nih.gov',
+            # 'AAD',
+            # 'cedars-sinai',
+	        # 'Wikipedia',
+	        #'Skinsight',
+            # 'Dermnetnz',
+	        #'www.nhs.uk',
+            # 'cdc',
+            # 'rarediseases',
+            # 'msdmanuals',
+            #'medline',
+            # 'patientinfo',
+            #'dermnet'
             ]
 
 disease = {
@@ -145,34 +145,29 @@ def scrape_data(url_list):
             elif "patient.info" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_patientinfo(page_soup))
             
-            elif "nhs.uk" in link_url:
+            elif "www.nhs.uk" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_NHS(page_soup))
 
             elif "cdc.gov" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_cdc(page_soup))
-		    
-	        # elif "webmd.com" in link_url:
+            
+            # elif "webmd.com" in link_url:
             #   df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
-		    
+            
             elif "cedars-sinai.org" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_cedars_sinai(page_soup))
-		    
+            
             elif "skinsight.com" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
 
             elif "dermnetnz.org" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
-            
-            
-
-
-	
     return df
 
 
 scraped_data = scrape_data(get_websites(disease,websites))
 
-scraped_data.to_csv('scraped_data.csv')
+scraped_data.to_csv('nhs_scraped_data.csv')
 
 
 # test code

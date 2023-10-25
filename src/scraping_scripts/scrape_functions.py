@@ -148,24 +148,36 @@ def scrape_dermnetnz(page):
 
 def scrape_NHS(page):
     try:
-        symptom_h = page.find(lambda tag: (tag.name in ['h2'])
+        symptoms_text = ''
+
+        symptom_h = page.find("h2", id="symptoms")
+        if not symptom_h:
+            symptom_h = page.find(lambda tag: (tag.name in ['h2'])
                                         and 'symptoms' in tag.get_text().lower()
                                     )
+        symptoms_components = symptom_h.find_next_siblings(lambda tag: (tag.name in ['p','ul']))
                             # Check if symptom_h is not None
-        if symptom_h:
-            next_ele = symptom_h.find_next()
-            while next_ele.name != 'h2' and next_ele.name != 'h3':
-                symptoms_components = next_ele
-                next_ele = next_ele.find_next()
-                symptoms_text += symptoms_components.get_text()
-            symptom_h = page.find(lambda tag: (tag.name in ['h1'])
-                                        and 'symptoms' in tag.get_text().lower()
-                                    )
-            if symptom_h:
+        for sym_com in symptoms_components:
+            if sym_com.name == "ul":
+                lis = sym_com.find_all("li")
+                for li in lis:
+                    symptoms_text += li.get_text()
+            else:
+                symptoms_text += sym_com.get_text()
+        return symptoms_text
                 
-                
-                symptoms_components = symptom_h.find_next('p')
-                symptoms_text = symptoms_components.get_text()
+        # if symptom_h:
+        #     next_ele = symptom_h.find_next()
+        #     while next_ele.name != 'h2' and next_ele.name != 'h3':
+        #         symptoms_components = next_ele
+        #         next_ele = next_ele.find_next()
+        #         symptoms_text += symptoms_components.get_text()
+        #     symptom_h = page.find(lambda tag: (tag.name in ['h1'])
+        #                                 and 'symptoms' in tag.get_text().lower()
+        #                             )
+        #     if symptom_h:
+        #         symptoms_components = symptom_h.find_next('p')
+        #         symptoms_text = symptoms_components.get_text()
     except:
         pass
 
@@ -281,26 +293,26 @@ def scrape_dermnetnz(page):
     except:
         pass
 
-def scrape_NHS(page):
-    try:
-        symptom_h = page.find(lambda tag: (tag.name in ['h2'])
-                                        and 'symptoms' in tag.get_text().lower()
-                                    )
-                            # Check if symptom_h is not None
-        if symptom_h:
-            next_ele = symptom_h.find_next()
-            while next_ele.name != 'h2' and next_ele.name != 'h3':
-                symptoms_components = next_ele
-                next_ele = next_ele.find_next()
-                symptoms_text += symptoms_components.get_text()
-            symptom_h = page.find(lambda tag: (tag.name in ['h1'])
-                                        and 'symptoms' in tag.get_text().lower()
-                                    )
-            if symptom_h:
-                symptoms_components = symptom_h.find_next('p')
-                symptoms_text = symptoms_components.get_text()
-    except:
-        pass
+# def scrape_NHS(page):
+#     try:
+#         symptom_h = page.find(lambda tag: (tag.name in ['h2'])
+#                                         and 'symptoms' in tag.get_text().lower()
+#                                     )
+#                             # Check if symptom_h is not None
+#         if symptom_h:
+#             next_ele = symptom_h.find_next()
+#             while next_ele.name != 'h2' and next_ele.name != 'h3':
+#                 symptoms_components = next_ele
+#                 next_ele = next_ele.find_next()
+#                 symptoms_text += symptoms_components.get_text()
+#             symptom_h = page.find(lambda tag: (tag.name in ['h1'])
+#                                         and 'symptoms' in tag.get_text().lower()
+#                                     )
+#             if symptom_h:
+#                 symptoms_components = symptom_h.find_next('p')
+#                 symptoms_text = symptoms_components.get_text()
+#     except:
+#         pass
 
 def scrape_cdc(page):
     try:
@@ -403,7 +415,7 @@ def scrape_dermnet(page):
 # import requests
 # from bs4 import BeautifulSoup
 
-# page_response = requests.get("https://medlineplus.gov/ency/article/000840.htm")
+# page_response = requests.get("https://www.nhs.uk/conditions/phlebitis/")
 
 # page = BeautifulSoup(page_response.content, 'html.parser')
 
@@ -419,4 +431,4 @@ def scrape_dermnet(page):
 # #     symptoms_text += sym_com.get_text()
 
 
-# print(scrape_medline(page))
+# print(scrape_NHS(page))
