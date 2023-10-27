@@ -11,12 +11,17 @@ from scrape_functions import *
 websites = [
             # 'Mayo Clinic', 
             # 'Cleveland Clinic',
+<<<<<<< HEAD
             # 'WebMD',
+=======
+            # # 'WebMD',
+>>>>>>> eef5067f95cedf12b25e2d37c360aa0827b6d327
             # 'Healthline.com',
             # 'niams.nih.gov',
             # 'AAD',
             # 'cedars-sinai',
 	        # 'Wikipedia',
+<<<<<<< HEAD
 	        # 'Skinsight',
 	        # 'NHS',
             # 'cdc',
@@ -25,6 +30,17 @@ websites = [
             # 'medline',
             'patientinfo',
             # 'dermnet'
+=======
+	        #'Skinsight',
+            # 'Dermnetnz',
+	        #'www.nhs.uk',
+            # 'cdc',
+            # 'rarediseases',
+            # 'msdmanuals',
+            #'medline',
+            # 'patientinfo',
+            #'dermnet'
+>>>>>>> eef5067f95cedf12b25e2d37c360aa0827b6d327
             ]
 
 disease = {
@@ -159,6 +175,7 @@ def scrape_data(url_list):
             if "patient.info" in link_url:
                 df = add_to_df(df, disease_name, keyword, link_url, scrape_patientinfo(page_soup))
             
+<<<<<<< HEAD
             # elif "nhs.uk" in link_url:
             #     df = add_to_df(df, disease_name, keyword, link_url, scrape_NHS(page_soup))
 
@@ -177,6 +194,25 @@ def scrape_data(url_list):
             # elif "dermnetnz.org" in link_url:
             #     df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
             
+=======
+            elif "www.nhs.uk" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_NHS(page_soup))
+
+            elif "cdc.gov" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_cdc(page_soup))
+            
+            # elif "webmd.com" in link_url:
+            #   df = add_to_df(df, disease_name, keyword, link_url, scrape_webmd(page_soup))
+            
+            elif "cedars-sinai.org" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_cedars_sinai(page_soup))
+            
+            elif "skinsight.com" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_skinsight(page_soup))
+
+            elif "dermnetnz.org" in link_url:
+                df = add_to_df(df, disease_name, keyword, link_url, scrape_dermnet(page_soup))
+>>>>>>> eef5067f95cedf12b25e2d37c360aa0827b6d327
     return df
 
 scraped_data8 = scrape_data(get_websites(disease,websites))
@@ -184,7 +220,11 @@ scraped_data8 = scrape_data(get_websites(disease,websites))
 # with open(scraped_data2, 'wb') as csvfile:
 #        scraped_data2.to_csv(scraped_data2, index=True, header=True)
 
+<<<<<<< HEAD
 scraped_data8.to_csv('scraped_data8.csv')
+=======
+scraped_data.to_csv('nhs_scraped_data.csv')
+>>>>>>> eef5067f95cedf12b25e2d37c360aa0827b6d327
 
 
 # test code
